@@ -13,6 +13,8 @@ module Pretty (
   pptype
 ) where
 
+import Prelude hiding ((<>))
+
 import Env
 import Type
 import Syntax
