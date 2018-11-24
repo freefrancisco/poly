@@ -9,13 +9,17 @@ Note
 This is a modified version of Stephen Diehl's Poly.
 https://github.com/sdiehl/write-you-a-haskell/tree/master/chapter7/poly_constraints
 
-This version compiles expressions a finite, fixed set of combinators, and then run
-these combinators just as Haskell functions.
+The modification was originally written by Kwang Yul Seo to implement an efficient Haskell interpreter in Haskell as he explained in his blog post [Write You An Interpreter](https://kseo.github.io/posts/2016-12-30-write-you-an-interpreter.html).
+
+Seo's version compiles expressions into a finite, fixed set of combinators, and then runs these combinators as Haskell functions. This technique was introduced by Matthew Naylor in [The Monad Reader Issue 10, Evaluating Haskell in Haskell](https://wiki.haskell.org/wikiupload/0/0a/TMR-Issue10.pdf).
+
+The current version is an attempt to make it compatible with the latest resolver and libraries, so it can be adapted to projects started today.
 
 To compile and run:
 
 ```shell
-$ cabal run
+$ stack build
+$ stack exec poly
 ```
 
 Usage:
@@ -45,8 +49,8 @@ let_bound : Int
 Poly> :type let compose f g = \x -> f (g x)
 compose : forall a b c. (a -> b) -> (c -> a) -> c -> b
 
-Poly> let rec factorial n = 
-  if (n == 0) 
+Poly> let rec factorial n =
+  if (n == 0)
   then 1
   else (n * (factorial (n-1)));
 ```
@@ -54,7 +58,7 @@ Poly> let rec factorial n =
 Notes
 =====
 
-Top level let declarations are syntactic sugar for nested lambda. For example: 
+Top level let declarations are syntactic sugar for nested lambda. For example:
 
 ```ocaml
 let add x y = x + y;
