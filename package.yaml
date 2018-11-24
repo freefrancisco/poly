@@ -1,0 +1,30 @@
+name: poly
+version: 0.1.1.0
+author:
+- Stephen Diehl
+- Kwang Yul Seo
+- Francisco Gutierrez
+maintainer: freefranciscoo@gmail.com
+license: MIT
+extra-source-files:
+- README.md
+
+dependencies:
+- base >=4.8 && <5
+- pretty
+- parsec
+- text
+- containers
+- mtl
+- transformers
+- repline
+
+library:
+  source-dirs: src
+
+executables:
+  poly:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+    - poly
